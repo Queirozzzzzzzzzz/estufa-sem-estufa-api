@@ -1,3 +1,4 @@
+import { UnauthorizedError } from "errors";
 import password from "models/password";
 import session from "models/session";
 
@@ -32,9 +33,24 @@ async function readSession(session) {
   console.log(sessionInDb);
 }
 
+async function authorize(req, res, next) {
+  const authorized = await session.checkByToken(req.cookies.token);
+
+  if (!authorized) {
+    throw new UnauthorizedError({
+      message: `A sessão informada não foi encontrada.`,
+      action: `Logue novamente.`,
+      errorLocationCode: "MODEL:AUTHENTICATION:AUTHORIZE:NOT_FOUND",
+    });
+  }
+
+  next();
+}
+
 export default {
   hashPassword,
   comparePasswords,
   createSession,
   readSession,
+  authorize,
 };

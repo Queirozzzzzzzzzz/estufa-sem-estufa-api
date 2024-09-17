@@ -9,7 +9,7 @@ beforeAll(async () => {
   await orchestrator.runPendingMigrations();
 });
 
-describe("POST to /api/v1/auth/signup", () => {
+describe("POST to /api/v1/auth/signin", () => {
   describe("No user", () => {
     test("With valid data", async () => {
       const testUserRes = await fetch(

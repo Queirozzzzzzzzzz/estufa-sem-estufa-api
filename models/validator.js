@@ -122,4 +122,14 @@ const schemas = {
       }),
     });
   },
+
+  token: function () {
+    return Joi.object({
+      token: Joi.string().length(96).alphanum().when("$required.token", {
+        is: "required",
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      }),
+    });
+  },
 };

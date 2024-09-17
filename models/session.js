@@ -28,9 +28,33 @@ async function findById(id) {
   return results.rows[0];
 }
 
+async function checkByToken(token) {
+  const query = {
+    text: `SELECT * FROM sessions WHERE token = $1;`,
+    values: [token],
+  };
+
+  const res = await db.query(query);
+
+  if (res.rowCount === 0) {
+    throw new NotFoundError({
+      message: `A sessão informada não foi encontrada no sistema.`,
+      action: "Logue novamente.",
+      stack: new Error().stack,
+      errorLocationCode: "MODEL:SESSION:CHECK_BY_TOKEN:NOT_FOUND",
+      key: "token",
+    });
+  }
+
+  const authorized = res.rows[0].expires_at >= new Date();
+
+  return authorized;
+}
+
 const session = {
   create,
   findById,
+  checkByToken,
 };
 
 export default session;
