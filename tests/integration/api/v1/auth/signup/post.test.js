@@ -2,6 +2,7 @@ import { version as uuidVersion } from "uuid";
 
 import orchestrator from "tests/orchestrator";
 import password from "models/password";
+import db from "infra/database";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -36,6 +37,11 @@ describe("POST to /api/v1/auth/signup", () => {
         resBody.password
       );
       expect(passwordsMatch).toBe(true);
+      const userInDb = await db.query({
+        text: "SELECT * FROM users WHERE id = $1;",
+        values: [resBody.id],
+      });
+      expect(userInDb.rows[0].email).toEqual(resBody.email);
     });
 
     test("With non-unique email", async () => {
