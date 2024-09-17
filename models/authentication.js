@@ -1,4 +1,5 @@
 import password from "models/password";
+import session from "models/session";
 
 async function hashPassword(unhashedPassword) {
   return await password.hash(unhashedPassword);
@@ -20,7 +21,20 @@ async function comparePasswords(providedPassword, passwordHash) {
   }
 }
 
+async function createSession(userId) {
+  const sessionObj = await session.create(userId);
+
+  return sessionObj;
+}
+
+async function readSession(session) {
+  const sessionInDb = await session.findById(session.id);
+  console.log(sessionInDb);
+}
+
 export default {
   hashPassword,
   comparePasswords,
+  createSession,
+  readSession,
 };
