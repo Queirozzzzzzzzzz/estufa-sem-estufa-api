@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 
 import db from "infra/database";
+import { NotFoundError } from "errors";
 
 const SESSION_EXPIRATION_IN_SECONDS = 60 * 60 * 24 * 30; // 30 days
 

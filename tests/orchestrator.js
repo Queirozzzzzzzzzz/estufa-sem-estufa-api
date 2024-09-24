@@ -3,6 +3,7 @@ import retry from "async-retry";
 import db from "infra/database";
 import migrator from "infra/migrator.js";
 import webserver from "infra/webserver";
+import data from "models/data";
 
 if (process.env.NODE_ENV !== "test") {
   throw new Error({
@@ -67,11 +68,18 @@ async function runPendingMigrations() {
   await migrator.runPendingMigrations();
 }
 
+async function createData(values = {}) {
+  const res = await data.create(values);
+
+  return res;
+}
+
 const orchestrator = {
   webserverUrl,
   waitForAllServices,
   dropAllTables,
   runPendingMigrations,
+  createData,
 };
 
 export default orchestrator;

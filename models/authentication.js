@@ -9,7 +9,7 @@ async function hashPassword(unhashedPassword) {
 async function comparePasswords(providedPassword, passwordHash) {
   const passwordMatches = await password.compare(
     providedPassword,
-    passwordHash
+    passwordHash,
   );
 
   if (!passwordMatches) {
@@ -43,6 +43,8 @@ async function authorize(req, res, next) {
       errorLocationCode: "MODEL:AUTHENTICATION:AUTHORIZE:NOT_FOUND",
     });
   }
+
+  req.user_id = authorized.user_id;
 
   next();
 }

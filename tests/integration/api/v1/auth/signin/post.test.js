@@ -23,7 +23,7 @@ describe("POST to /api/v1/auth/signin", () => {
             email: "coolemail@example.com",
             password: "coolpassword",
           }),
-        }
+        },
       );
       const testUser = await testUserRes.json();
 
@@ -69,13 +69,13 @@ describe("POST to /api/v1/auth/signin", () => {
       expect(resBody.name).toEqual("UnauthorizedError");
       expect(resBody.message).toEqual("Dados não conferem.");
       expect(resBody.action).toEqual(
-        "Verifique se os dados enviados estão corretos."
+        "Verifique se os dados enviados estão corretos.",
       );
       expect(resBody.status_code).toEqual(401);
       expect(uuidVersion(resBody.error_id)).toEqual(4);
       expect(uuidVersion(resBody.request_id)).toEqual(4);
       expect(resBody.error_location_code).toEqual(
-        "CONTROLLER:SESSIONS:POST_HANDLER:DATA_MISMATCH"
+        "CONTROLLER:SESSIONS:POST_HANDLER:DATA_MISMATCH",
       );
     });
 
@@ -97,13 +97,13 @@ describe("POST to /api/v1/auth/signin", () => {
       expect(resBody.name).toEqual("UnauthorizedError");
       expect(resBody.message).toEqual("Dados não conferem.");
       expect(resBody.action).toEqual(
-        "Verifique se os dados enviados estão corretos."
+        "Verifique se os dados enviados estão corretos.",
       );
       expect(resBody.status_code).toEqual(401);
       expect(uuidVersion(resBody.error_id)).toEqual(4);
       expect(uuidVersion(resBody.request_id)).toEqual(4);
       expect(resBody.error_location_code).toEqual(
-        "CONTROLLER:SESSIONS:POST_HANDLER:DATA_MISMATCH"
+        "CONTROLLER:SESSIONS:POST_HANDLER:DATA_MISMATCH",
       );
     });
   });

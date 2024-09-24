@@ -34,7 +34,7 @@ describe("POST to /api/v1/auth/signup", () => {
 
       const passwordsMatch = await password.compare(
         "coolpassword",
-        resBody.password
+        resBody.password,
       );
       expect(passwordsMatch).toBe(true);
       const userInDb = await db.query({
@@ -62,15 +62,15 @@ describe("POST to /api/v1/auth/signup", () => {
       expect(resBody.status_code).toEqual(400);
       expect(resBody.name).toEqual("ValidationError");
       expect(resBody.message).toEqual(
-        'O "email" informado já está sendo usado.'
+        'O "email" informado já está sendo usado.',
       );
       expect(resBody.action).toEqual(
-        "Ajuste os dados enviados e tente novamente."
+        "Ajuste os dados enviados e tente novamente.",
       );
       expect(uuidVersion(resBody.error_id)).toEqual(4);
       expect(uuidVersion(resBody.request_id)).toEqual(4);
       expect(resBody.error_location_code).toEqual(
-        "MODEL:USER:VALIDATE_UNIQUE_EMAIL:ALREADY_EXISTS"
+        "MODEL:USER:VALIDATE_UNIQUE_EMAIL:ALREADY_EXISTS",
       );
       expect(resBody.key).toEqual("email");
     });
@@ -94,12 +94,12 @@ describe("POST to /api/v1/auth/signup", () => {
       expect(resBody.name).toEqual("ValidationError");
       expect(resBody.message).toEqual('"email" deve conter um email válido.');
       expect(resBody.action).toEqual(
-        "Ajuste os dados enviados e tente novamente."
+        "Ajuste os dados enviados e tente novamente.",
       );
       expect(uuidVersion(resBody.error_id)).toEqual(4);
       expect(uuidVersion(resBody.request_id)).toEqual(4);
       expect(resBody.error_location_code).toEqual(
-        "MODEL:VALIDATOR:FINAL_SCHEMA"
+        "MODEL:VALIDATOR:FINAL_SCHEMA",
       );
       expect(resBody.key).toEqual("email");
     });

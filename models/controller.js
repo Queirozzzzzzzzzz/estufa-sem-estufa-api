@@ -45,7 +45,7 @@ async function onNoMatchHandler(req, res) {
   return errorResponse(
     res,
     publicErrorObject.statusCode,
-    snakeize(publicErrorObject)
+    snakeize(publicErrorObject),
   );
 }
 
@@ -107,7 +107,7 @@ function onErrorHandler(err, req, res) {
   return errorResponse(
     res,
     publicErrorObject.statusCode,
-    snakeize(publicErrorObject)
+    snakeize(publicErrorObject),
   );
 }
 
