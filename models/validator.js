@@ -132,4 +132,50 @@ const schemas = {
       }),
     });
   },
+
+  ph: function () {
+    return Joi.object({
+      ph: Joi.number().integer().when("$required.ph", {
+        is: "required",
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      }),
+    });
+  },
+
+  humidity: function () {
+    return Joi.object({
+      humidity: Joi.string()
+        .valid("Úmido", "Normal", "Seco")
+        .allow(null)
+        .when("$required.humidity", {
+          is: "required",
+          then: Joi.required(),
+          otherwise: Joi.optional(),
+        }),
+    });
+  },
+
+  temperature: function () {
+    return Joi.object({
+      temperature: Joi.number().when("$required.temperature", {
+        is: "required",
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      }),
+    });
+  },
+
+  light_intensity: function () {
+    return Joi.object({
+      light_intensity: Joi.string()
+        .valid("Forte", "Normal", "Fraca")
+        .allow(null)
+        .when("$required.light_intensity", {
+          is: "required",
+          then: Joi.required(),
+          otherwise: Joi.optional(),
+        }),
+    });
+  },
 };

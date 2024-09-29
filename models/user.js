@@ -46,6 +46,31 @@ async function findByEmail(email) {
   return results.rows[0];
 }
 
+async function findByToken(token) {
+  const query = {
+    text: `
+    SELECT s.*, u.id AS user_id, u.* 
+    FROM sessions s
+    LEFT JOIN users u ON s.user_id = u.id
+    WHERE s.token = $1;`,
+    values: [token],
+  };
+
+  const results = await db.query(query);
+
+  if (results.rowCount === 0) {
+    throw new NotFoundError({
+      message: `O token informado não foi encontrado no sistema.`,
+      action: "Logue novamente.",
+      stack: new Error().stack,
+      errorLocationCode: "MODEL:USER:FIND_BY_TOKEN:NOT_FOUND",
+      key: "token",
+    });
+  }
+
+  return results.rows[0];
+}
+
 // functions
 
 async function hashPasswordInObject(obj) {
@@ -81,6 +106,7 @@ async function validateUniqueEmail(email, options) {
 const user = {
   create,
   findByEmail,
+  findByToken,
 };
 
 export default user;
