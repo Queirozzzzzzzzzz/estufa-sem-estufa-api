@@ -58,23 +58,29 @@ async function getAllByToken(token) {
 async function getNewByUserId(userId) {
   const query = {
     text: `
-    WITH selectedData AS (
-        SELECT * 
-        FROM data 
-        WHERE user_id = $1 
-        AND viewed = false
-    )
-    UPDATE data
-    SET viewed = true
-    FROM selectedData
-    WHERE data.user_id = selectedData.user_id
-    RETURNING *;
+      WITH selectedData AS (
+          SELECT id
+          FROM data 
+          WHERE user_id = $1 
+          AND viewed = false
+      ),
+      updatedData AS (
+          UPDATE data
+          SET viewed = true
+          FROM selectedData
+          WHERE data.id = selectedData.id
+          RETURNING *
+      )
+      SELECT *
+      FROM updatedData
+      ORDER BY created_at DESC
+      LIMIT 1;
     `,
     values: [userId],
   };
   const res = await db.query(query);
 
-  return res.rows;
+  return res.rows[0];
 }
 
 async function getAllByUserId() {
