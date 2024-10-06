@@ -30,6 +30,8 @@ async function getHandler(req, res) {
   let values;
   try {
     values = await data.getNewByToken(req.cookies.token);
+
+    if (!values) values = [];
   } catch (err) {
     throw err;
   }

@@ -32,7 +32,7 @@ exports.up = (pgm) => {
     },
 
     temperature: {
-      type: "real",
+      type: "integer",
     },
 
     light_intensity: {

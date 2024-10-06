@@ -105,13 +105,13 @@ describe("GET to /api/v1/data", () => {
       const resBody = await res.json();
 
       expect(res.status).toEqual(200);
-      expect(resBody[0].user_id).toEqual(sessionResBody.user_id);
-      expect(resBody[0].viewed).toBe(false);
-      expect(Date.parse(resBody[0].created_at)).not.toBe(NaN);
-      expect(resBody[0].ph).toBe(null);
-      expect(resBody[0].humidity).toBe(null);
-      expect(resBody[0].temperature).toBe(null);
-      expect(resBody[0].light_intensity).toBe(null);
+      expect(resBody.user_id).toEqual(sessionResBody.user_id);
+      expect(resBody.viewed).toBe(true);
+      expect(Date.parse(resBody.created_at)).not.toBe(NaN);
+      expect(resBody.ph).toBe(null);
+      expect(resBody.humidity).toBe(null);
+      expect(resBody.temperature).toBe(null);
+      expect(resBody.light_intensity).toBe(null);
     });
 
     test("Retrieving information without new data", async () => {
