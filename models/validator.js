@@ -145,14 +145,11 @@ const schemas = {
 
   humidity: function () {
     return Joi.object({
-      humidity: Joi.string()
-        .valid("Úmido", "Normal", "Seco")
-        .allow(null)
-        .when("$required.humidity", {
-          is: "required",
-          then: Joi.required(),
-          otherwise: Joi.optional(),
-        }),
+      humidity: Joi.number().when("$required.humidity", {
+        is: "required",
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      }),
     });
   },
 
@@ -168,14 +165,11 @@ const schemas = {
 
   light_intensity: function () {
     return Joi.object({
-      light_intensity: Joi.string()
-        .valid("Forte", "Normal", "Fraca")
-        .allow(null)
-        .when("$required.light_intensity", {
-          is: "required",
-          then: Joi.required(),
-          otherwise: Joi.optional(),
-        }),
+      light_intensity: Joi.number().when("$required.light_intensity", {
+        is: "required",
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      }),
     });
   },
 };

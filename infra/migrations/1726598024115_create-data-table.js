@@ -26,8 +26,7 @@ exports.up = (pgm) => {
     },
 
     humidity: {
-      type: "varchar(6)",
-      check: "humidity IN ('Úmido', 'Normal', 'Seco')",
+      type: "float",
       nullable: true,
     },
 
@@ -36,8 +35,7 @@ exports.up = (pgm) => {
     },
 
     light_intensity: {
-      type: "varchar(6)",
-      check: "light_intensity IN ('Forte', 'Normal', 'Fraca')",
+      type: "float",
       nullable: true,
     },
   });

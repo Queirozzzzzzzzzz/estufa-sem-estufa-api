@@ -100,9 +100,9 @@ describe("POST to /api/v1/data", () => {
         },
         body: JSON.stringify({
           ph: "1",
-          humidity: "Úmido",
+          humidity: "60",
           temperature: "27",
-          light_intensity: "Forte",
+          light_intensity: "50",
         }),
       });
 
@@ -113,9 +113,9 @@ describe("POST to /api/v1/data", () => {
       expect(resBody.viewed).toBe(false);
       expect(Date.parse(resBody.created_at)).not.toBe(NaN);
       expect(resBody.ph).toBe(1);
-      expect(resBody.humidity).toBe("Úmido");
+      expect(resBody.humidity).toBe(60);
       expect(resBody.temperature).toBe(27);
-      expect(resBody.light_intensity).toBe("Forte");
+      expect(resBody.light_intensity).toBe(50);
     });
 
     test("With only one value", async () => {
