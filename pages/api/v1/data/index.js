@@ -48,8 +48,9 @@ async function postValidationHandler(req, res, next) {
 
   const cleanedBody = validator(req.body, {
     ph: "optional",
-    humidity: "optional",
-    temperature: "optional",
+    soil_humidity: "optional",
+    air_humidity: "optional",
+    air_temperature: "optional",
     light_intensity: "optional",
   });
 

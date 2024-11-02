@@ -100,8 +100,9 @@ describe("POST to /api/v1/data", () => {
         },
         body: JSON.stringify({
           ph: "1",
-          humidity: "60",
-          temperature: "27",
+          soil_humidity: "60",
+          air_humidity: "55",
+          air_temperature: "27",
           light_intensity: "50",
         }),
       });
@@ -113,8 +114,9 @@ describe("POST to /api/v1/data", () => {
       expect(resBody.viewed).toBe(false);
       expect(Date.parse(resBody.created_at)).not.toBe(NaN);
       expect(resBody.ph).toBe(1);
-      expect(resBody.humidity).toBe(60);
-      expect(resBody.temperature).toBe(27);
+      expect(resBody.soil_humidity).toBe(60);
+      expect(resBody.air_humidity).toBe(55);
+      expect(resBody.air_temperature).toBe(27);
       expect(resBody.light_intensity).toBe(50);
     });
 
@@ -151,8 +153,9 @@ describe("POST to /api/v1/data", () => {
       expect(resBody.viewed).toBe(false);
       expect(Date.parse(resBody.created_at)).not.toBe(NaN);
       expect(resBody.ph).toBe(7);
-      expect(resBody.humidity).toBe(null);
-      expect(resBody.temperature).toBe(null);
+      expect(resBody.soil_humidity).toBe(null);
+      expect(resBody.air_humidity).toBe(null);
+      expect(resBody.air_temperature).toBe(null);
       expect(resBody.light_intensity).toBe(null);
     });
 

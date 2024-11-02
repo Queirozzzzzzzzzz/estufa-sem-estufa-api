@@ -4,14 +4,15 @@ import db from "infra/database";
 async function create(values) {
   const query = {
     text: `
-    INSERT INTO data (user_id, ph, humidity, temperature, light_intensity)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO data (user_id, ph, soil_humidity, air_humidity, air_temperature, light_intensity)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;`,
     values: [
       values.user_id,
       values.ph,
-      values.humidity,
-      values.temperature,
+      values.soil_humidity,
+      values.air_humidity,
+      values.air_temperature,
       values.light_intensity,
     ],
   };

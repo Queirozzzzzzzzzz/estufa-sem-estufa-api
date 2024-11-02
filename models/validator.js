@@ -143,9 +143,9 @@ const schemas = {
     });
   },
 
-  humidity: function () {
+  soil_humidity: function () {
     return Joi.object({
-      humidity: Joi.number().when("$required.humidity", {
+      soil_humidity: Joi.number().when("$required.soil_humidity", {
         is: "required",
         then: Joi.required(),
         otherwise: Joi.optional(),
@@ -153,9 +153,19 @@ const schemas = {
     });
   },
 
-  temperature: function () {
+  air_humidity: function () {
     return Joi.object({
-      temperature: Joi.number().when("$required.temperature", {
+      air_humidity: Joi.number().when("$required.air_humidity", {
+        is: "required",
+        then: Joi.required(),
+        otherwise: Joi.optional(),
+      }),
+    });
+  },
+
+  air_temperature: function () {
+    return Joi.object({
+      air_temperature: Joi.number().when("$required.air_temperature", {
         is: "required",
         then: Joi.required(),
         otherwise: Joi.optional(),

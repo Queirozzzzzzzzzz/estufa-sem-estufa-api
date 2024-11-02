@@ -25,12 +25,17 @@ exports.up = (pgm) => {
       type: "integer",
     },
 
-    humidity: {
+    soil_humidity: {
       type: "float",
       nullable: true,
     },
 
-    temperature: {
+    air_humidity: {
+      type: "float",
+      nullable: true,
+    },
+
+    air_temperature: {
       type: "float",
     },
 

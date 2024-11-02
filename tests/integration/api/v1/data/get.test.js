@@ -109,8 +109,9 @@ describe("GET to /api/v1/data", () => {
       expect(resBody.viewed).toBe(true);
       expect(Date.parse(resBody.created_at)).not.toBe(NaN);
       expect(resBody.ph).toBe(null);
-      expect(resBody.humidity).toBe(null);
-      expect(resBody.temperature).toBe(null);
+      expect(resBody.soil_humidity).toBe(null);
+      expect(resBody.air_humidity).toBe(null);
+      expect(resBody.air_temperature).toBe(null);
       expect(resBody.light_intensity).toBe(null);
     });
 
